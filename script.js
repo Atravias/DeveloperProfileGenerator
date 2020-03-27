@@ -41,20 +41,24 @@ inquirer
                     color
                 }
 
-                console.log(data)
+                // console.log(data)
 
                 conversion({
-                    html: html(data)
+                    html: html(data),
+
                 }, function (err, pdf) {
-                    if (err) throw err;
-                    var output = fs.createWriteStream('html25.pdf')
+                    if (err) {
+                        console.log(err)
+                    };
+                    var output = fs.createWriteStream('html90.pdf')
+                    console.log("HELLO")
                     // console.log(pdf.logs);
                     // console.log(pdf.numberOfPages);
                     // since pdf.stream is a node.js stream you can use it
                     // to save the pdf to a file (like in this example) or to
                     // respond an http request.
-                    pdf.stream.pipe(output);
-                    return;
+                    return pdf.stream.pipe(output);
+
                 })
                 // fs.writeFile("repos.txt", repoNamesStr, function (err) {
                 //     if (err) {
@@ -75,6 +79,7 @@ inquirer
         });
 
     });
+
 
 // conversion({
 //     html: "/index.html",
